@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=harbour-airmeteo
+Exec=harbour-airmeteo
+Name=AirMeteo
+Name[de]=AirMeteo
