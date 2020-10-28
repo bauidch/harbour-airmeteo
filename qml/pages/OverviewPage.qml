@@ -67,8 +67,8 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsePage.qml"))
             }
             MenuItem {
-                text: qsTr("Search")
-                onClicked: pageStack.push(Qt.resolvedUrl("SearchPage.qml"))
+                text: qsTr("Add Station")
+                onClicked: pageStack.push(Qt.resolvedUrl("wizard/station.qml"))
             }
             MenuItem {
                 text: qsTr("Station")

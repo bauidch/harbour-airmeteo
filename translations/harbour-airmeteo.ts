@@ -62,11 +62,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search</source>
+        <source>Station</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Station</source>
+        <source>Add Station</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

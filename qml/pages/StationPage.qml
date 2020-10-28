@@ -1,9 +1,16 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
+import ch.bauid.airdata 1.0
 import ".."
+import "../js/client.js" as JSClient
+
 
 Page {
     id: stationPage
+
+    AirData {
+        id: test_airdata
+    }
 
     SilicaFlickable {
            anchors.fill: parent
@@ -18,7 +25,7 @@ Page {
            PushUpMenu {
                MenuItem {
                    text: qsTr("Raw") // dataMode RAW Decoded
-                   //onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
+                   onClicked: test_airdata.getMETAR("LSZH")
                }
            }
 
@@ -62,6 +69,7 @@ Page {
             spacing: Theme.paddingLarge
 
             Label {
+                id: rawMETARLabel
                 text: "LSZH 170850Z VRB02KT 9999 FEW008 BKN060 08/05 Q1018 NOSIG="
                 color: Theme.primaryColor
                 font.pixelSize: Theme.fontSizeSmall
@@ -113,6 +121,7 @@ Page {
             spacing: Theme.paddingLarge
 
             Label {
+                id: rawTAFLabel
                 text: "LSZH 170825Z 1709/1815 34004KT 9999 FEW025 BKN060 TX10/1714Z TN05/1805Z TX11/1814Z PROB30  TEMPO 1709/1713 03005KT PROB40 1800/1807 4000 BR"
                 color: Theme.primaryColor
                 font.pixelSize: Theme.fontSizeSmall
@@ -131,5 +140,9 @@ Page {
         }
 
     }
+    Component.onCompleted: {
+           //JSClient.get_metar()
+           //JSClient.getAirportData()
+        }
     }
 }

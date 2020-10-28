@@ -7,14 +7,17 @@ function httpGet(url) {
 
 function get_metar() {
     var locationsRAW = httpGet("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&stationString=LSZH&hoursBeforeNow=1&format=xml&mostRecent=true")
+    console.log(locationsRAW.responseText)
 
-    console.log(locationsRAW)
-    if (locationsRAW.status >= 200 && locationsRAW.status < 400) {
-        console.log(locationsRAW)
-        var domParser = new DOMParser();
-        var xmlDocument = domParser.parseFromString(locationsRAW.responseText, "text/xml");
-        console.log(xmlDocument)
-    } else {
-        console.log('error or no locations')
+}
+
+function getAirportData() {
+    var airportdataRAW = httpGet("https://www.airport-data.com/api/ap_info.json?icao=LSZH")
+
+    try {
+        var location = JSON.parse(airportdataRAW.responseText);
+        console.log(location.location)
+    } catch (e) {
+        console.log("error: failed to parse json");
     }
 }
