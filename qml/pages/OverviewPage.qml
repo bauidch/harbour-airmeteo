@@ -68,7 +68,7 @@ Page {
             }
             MenuItem {
                 text: qsTr("Add Station")
-                onClicked: pageStack.push(Qt.resolvedUrl("wizard/station.qml"))
+                onClicked: pageStack.push(Qt.resolvedUrl("dialogs/AddStationDialog.qml"))
             }
             MenuItem {
                 text: qsTr("Station")

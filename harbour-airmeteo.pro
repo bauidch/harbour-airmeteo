@@ -18,10 +18,10 @@ SOURCES += src/harbour-airmeteo.cpp \
     src/airdata.cpp
 
 DISTFILES += qml/harbour-airmeteo.qml \
+    qml/AddStationDialog.qml \
     qml/cover/CoverPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/OverviewPage.qml \
-    qml/pages/SearchPage.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/StationPage.qml \
     rpm/harbour-airmeteo.changes.in \

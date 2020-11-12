@@ -2,7 +2,6 @@ import QtQuick 2.5
 import Sailfish.Silica 1.0
 import ch.bauid.airdata 1.0
 import ".."
-import "../js/client.js" as JSClient
 
 
 Page {
@@ -141,8 +140,7 @@ Page {
 
     }
     Component.onCompleted: {
-           //JSClient.get_metar()
-           //JSClient.getAirportData()
+        test_airdata.getMETAR("LSZH")
         }
     }
 }

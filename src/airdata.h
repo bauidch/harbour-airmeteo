@@ -8,6 +8,8 @@
 #include <QGuiApplication>
 #include <QQuickView>
 #include <QtQml>
+#include <QQmlEngine>
+#include <QXmlStreamReader>
 #define AIRDATA_H
 
 class AirData: public QObject {
@@ -16,9 +18,7 @@ class AirData: public QObject {
 public:
     Q_INVOKABLE bool postMessage(const QString &station);
     Q_INVOKABLE QString getMETAR(const QString &station);
-    Q_PROPERTY(QString html   READ html   WRITE setHtml   NOTIFY htmlChanged)
-    const QString html ( ) const;
-    void setHtml(const QString &newHtml);
+
 
 public slots:
     void refresh();
@@ -26,10 +26,7 @@ public slots:
 
 private:
     QNetworkAccessManager networkManager;
-    QString s_html;
-
-signals:
-    void htmlChanged();
+    QString ICAOCode;
 
 };
 

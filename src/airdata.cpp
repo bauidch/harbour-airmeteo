@@ -6,7 +6,6 @@ bool AirData::postMessage(const QString &station) {
 }
 
 QString AirData::getMETAR(const QString &station) {
-    //QString str = "Hello";
     QNetworkRequest newRequest("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&stationString=" + station + "&hoursBeforeNow=1&format=xml&mostRecent=true");
     networkManager.get(newRequest);
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
@@ -20,22 +19,31 @@ void AirData::handleNetworkData(QNetworkReply *networkReply)
     if (!networkReply->error()) {
         QString response = QString::fromLatin1(networkReply->readAll());
         qDebug() << response;
-        response = response.replace("bgcolor=\"#99CCFF\"","");
-        qDebug() << setHtml(response);
+
+        QXmlStreamReader xml(response);
+        while (!xml.atEnd() && !xml.hasError())
+        {
+            xml.readNext();
+            if (xml.isStartElement() && (xml.name() == "raw_text")) {
+                qDebug() <<  xml.readElementText();
+            }
+            if (xml.isStartElement() && (xml.name() == "station_id")) {
+                qDebug() <<  xml.readElementText();
+                ICAOCode = xml.readElementText();
+            }
+            if (xml.isStartElement() && (xml.name() == "observation_time")) {
+                qDebug() <<  xml.readElementText();
+            }
+            if (xml.isStartElement() && (xml.name() == "temp_c")) {
+                qDebug() <<  xml.readElementText();
+            }
+            if (xml.isStartElement() && (xml.name() == "dewpoint_c")) {
+                qDebug() <<  xml.readElementText();
+            }
+        }
     }
 
     networkReply->deleteLater();
-}
-
-
-const QString AirData :: html ( ) const {
-    return s_html;
-}
-
-void AirData::setHtml(const QString &newHtml)
-{
-    s_html = newHtml;
-    emit htmlChanged ();
 }
 
 void AirData::refresh() {
