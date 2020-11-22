@@ -1,5 +1,5 @@
 Name: harbour-airmeteo
-Summary: METAR and TAF Client
+Summary: METAR Client
 Version: 0.1
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
@@ -12,7 +12,7 @@ License: LICENSE
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Short description of my Sailfish OS Application
+  Show the METAR of your Favorite Airports
 Builder: qmake5
 
 # This section specifies build dependencies that are resolved using pkgconfig.
@@ -30,6 +30,7 @@ PkgConfigBR:
 # Runtime dependencies which are not automatically detected
 Requires:
   - sailfishsilica-qt5 >= 0.10.9 
+  - pyotherside-qml-plugin-python3-qt5
 
 # All installed files
 Files:

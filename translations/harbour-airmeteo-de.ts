@@ -24,7 +24,34 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Source:</source>
+        <source>Credits:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddStationDialog</name>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Station</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ICAO Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Station not Found, try again</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -50,10 +77,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pull down to search stations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
@@ -69,6 +92,14 @@
         <source>Add Station</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Pull down to add stations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh Data</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StationPage</name>
@@ -78,6 +109,30 @@
     </message>
     <message>
         <source>Raw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Temperatur</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dewpoint</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update at </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wind Direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wind Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

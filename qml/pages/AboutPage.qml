@@ -67,7 +67,7 @@ Page {
                 Label {
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.highlightColor
-                    text: qsTr("Source:")
+                    text: qsTr("Credits:")
                 }
             }
 

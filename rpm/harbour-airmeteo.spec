@@ -8,7 +8,7 @@ Name:       harbour-airmeteo
 # >> macros
 # << macros
 
-Summary:    METAR and TAF Client
+Summary:    METAR Client
 Version:    0.1
 Release:    1
 Group:      Qt/Qt
@@ -17,6 +17,7 @@ URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-airmeteo.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   pyotherside-qml-plugin-python3-qt5
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -24,7 +25,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Short description of my Sailfish OS Application
+Show the METAR of your Favorite Airports
 
 
 %prep

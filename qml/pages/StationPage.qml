@@ -1,30 +1,28 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
-import ch.bauid.airdata 1.0
+import io.thp.pyotherside 1.5
 import ".."
+import "../components"
 
 
 Page {
     id: stationPage
-
-    AirData {
-        id: test_airdata
-    }
+    property string stationCode
 
     SilicaFlickable {
            anchors.fill: parent
 
            PullDownMenu {
                MenuItem {
-                   text: qsTr("Add to Favorites")
-                   //onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
+                   text: qsTr("Refresh")
+                   onClicked: loadDataToStorage(stationCode)
                }
            }
 
            PushUpMenu {
                MenuItem {
                    text: qsTr("Raw") // dataMode RAW Decoded
-                   onClicked: test_airdata.getMETAR("LSZH")
+                   //onClicked: test_airdata.getMETAR("LSZH")
                }
            }
 
@@ -36,7 +34,7 @@ Page {
 
         PageHeader {
             id: pageHeader
-            title: "LSZH"
+            title: stationCode
             Label {
                 id: subLabel
                 text: "Zurich"
@@ -78,25 +76,22 @@ Page {
             }
         }
 
-        Row {
-            width: parent.width
-            spacing: Theme.paddingSmall
+        AirDataIteam {
+            id: temperatur
+            typeLabelText: qsTr("Temperatur")
+        }
 
-            Label {
-                width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
-                text: "Temperatur"
-                horizontalAlignment: Text.AlignRight
-                color: Theme.primaryColor
-                font.pixelSize: Theme.fontSizeMedium
-                wrapMode: Text.Wrap
-            }
-
-            Label {
-                width: isPortrait ? parent.width * 0.66 : parent.width * 0.66 / 1.5
-                text: "Foo"
-                color: Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeMedium
-            }
+        AirDataIteam {
+            id: dewpoint
+            typeLabelText: qsTr("Dewpoint")
+        }
+        AirDataIteam {
+            id: windDirection
+            typeLabelText: qsTr("Wind Direction")
+        }
+        AirDataIteam {
+            id: windSpeed
+            typeLabelText: qsTr("Wind Speed")
         }
 
         Label {
@@ -107,40 +102,61 @@ Page {
             font.pixelSize: Theme.fontSizeTiny
         }
 
-        SectionHeader {
-            font.pixelSize: Theme.fontSizeMedium
-            color: Theme.secondaryHighlightColor
-            text: "TAF"
-            wrapMode: Text.Wrap
+    }
+
+    Component.onCompleted {
+        loadMetar()
+    }
+
+    function loadMetar() {
+        var metar = metarBank.getMETAR(stationCode)
+
+    }
+
+    Python {
+        id: python
+
+        Component.onCompleted: {
+            addImportPath(Qt.resolvedUrl('.'));
+
+            importModule('airdata', function () {
+                python.call('airdata.getMetar', [stationCode], function(result) {
+                    if (result.length <= 0) {
+                       stationPage.noData = "True"
+                       console.log('QML Debug: No Data')
+                    }
+
+                    for (var i=0; i<result.length; i++) {
+                        if (result[i].type === "raw_text") {
+                            rawMETARLabel.text =  result[i].value
+                        }
+
+                        if (result[i].type === "temp_c") {
+                            temperatur.valueLabelText =  result[i].value + " C"
+                        }
+                        if (result[i].type === "dewpoint_c") {
+                            dewpoint.valueLabelText = result[i].value + " C"
+                        }
+                        if (result[i].type === "wind_dir_degrees") {
+                            windDirection.valueLabelText = result[i].value + " Grad"
+                        }
+                        if (result[i].type === "wind_speed_kt") {
+                            windSpeed.valueLabelText = result[i].value + " kt"
+                        }
+
+                        if (result[i].type === "observation_time") {
+                            metarUpdateTime.text = qsTr("Update at ") + result[i].value
+                        }
+                    }
+                });
+            });
         }
-        Column {
-            id: rawTAF
-            x: Theme.paddingLarge
-            width: parent.width - 2*x
-            spacing: Theme.paddingLarge
 
-            Label {
-                id: rawTAFLabel
-                text: "LSZH 170825Z 1709/1815 34004KT 9999 FEW025 BKN060 TX10/1714Z TN05/1805Z TX11/1814Z PROB30  TEMPO 1709/1713 03005KT PROB40 1800/1807 4000 BR"
-                color: Theme.primaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                wrapMode: Text.Wrap
-                width: parent.width
-
-            }
-        }
-
-        Label {
-            id: tafUpdateTime
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: "Updatet at 11"
-            color: Theme.secondaryHighlightColor
-            font.pixelSize: Theme.fontSizeTiny
+        onError: {
+            console.log('python error: ' + traceback);
         }
 
     }
-    Component.onCompleted: {
-        test_airdata.getMETAR("LSZH")
-        }
     }
+
 }

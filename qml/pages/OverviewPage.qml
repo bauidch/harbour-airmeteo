@@ -9,23 +9,25 @@ Page {
 
     SilicaListView {
         id: favoritesView
-        model: favoritesBank
+        model: metarModel
         delegate: ListItem {
             id: delegateItem
             width: parent.width
             menu: contextMenu
             ListView.onRemove: animateRemoval()
             function deleteItem() {
-                favoritesBank.deleteItem(index, model.name);
+                metarBank.deleteMETARS(model.station_id);
+                metarModel.remove(index)
+                reloadMetarsData()
             }
 
             onClicked: {
-                pageStack.push(Qt.resolvedUrl('StationPage.qml'), {stationCode: model.icao_code})
+                pageStack.push(Qt.resolvedUrl('StationPage.qml'), {stationCode: model.station_id})
             }
 
             Label {
                 id: typeLabel
-                text: model.name
+                text: model.station_id
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegateItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 x: Theme.paddingLarge
@@ -47,9 +49,9 @@ Page {
 
 
         ViewPlaceholder {
-            enabled: favoritesView.count === 0
+            enabled: metarModel.count === 0
             text: qsTr("No Stations yet")
-            hintText: qsTr("Pull down to search stations")
+            hintText: qsTr("Pull down to add stations")
 
         }
 
@@ -68,11 +70,15 @@ Page {
             }
             MenuItem {
                 text: qsTr("Add Station")
-                onClicked: pageStack.push(Qt.resolvedUrl("dialogs/AddStationDialog.qml"))
+                onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/AddStationDialog.qml"))
             }
             MenuItem {
                 text: qsTr("Station")
                 onClicked: pageStack.push(Qt.resolvedUrl("StationPage.qml"))
+            }
+            MenuItem {
+                text: qsTr("Refresh Data")
+                //onClicked: favoritesBank.addItem(stationPage.stationIcaoId)
             }
         }
     }

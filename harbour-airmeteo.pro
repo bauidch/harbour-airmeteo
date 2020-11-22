@@ -14,11 +14,11 @@ TARGET = harbour-airmeteo
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-airmeteo.cpp \
-    src/airdata.cpp
+SOURCES += src/harbour-airmeteo.cpp
 
 DISTFILES += qml/harbour-airmeteo.qml \
     qml/AddStationDialog.qml \
+    qml/components/AirDataIteam.qml \
     qml/cover/CoverPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/OverviewPage.qml \
@@ -28,6 +28,7 @@ DISTFILES += qml/harbour-airmeteo.qml \
     rpm/harbour-airmeteo.changes.run.in \
     rpm/harbour-airmeteo.spec \
     rpm/harbour-airmeteo.yaml \
+    src/airdata.py \
     translations/*.ts \
     harbour-airmeteo.desktop
 
@@ -43,5 +44,4 @@ CONFIG += sailfishapp_i18n
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-airmeteo-de.ts
 
-HEADERS += \
-    src/airdata.h
+HEADERS +=
