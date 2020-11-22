@@ -110,5 +110,6 @@ Dialog {
     onAccepted:{
         loadDataToStorage(stationInput.text)
         reloadMetarsData()
+        console.log(stationInput.text)
     }
 }

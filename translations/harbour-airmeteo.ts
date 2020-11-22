@@ -96,6 +96,10 @@
         <source>Refresh Data</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source> wit </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StationPage</name>

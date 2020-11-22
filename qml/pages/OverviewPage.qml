@@ -10,9 +10,13 @@ Page {
     SilicaListView {
         id: favoritesView
         model: metarModel
+        anchors.fill: parent
+        anchors.bottomMargin: Theme.paddingLarge
+        spacing: Theme.paddingLarge
         delegate: ListItem {
             id: delegateItem
             width: parent.width
+            contentHeight: metarbox.height
             menu: contextMenu
             ListView.onRemove: animateRemoval()
             function deleteItem() {
@@ -25,12 +29,71 @@ Page {
                 pageStack.push(Qt.resolvedUrl('StationPage.qml'), {stationCode: model.station_id})
             }
 
-            Label {
-                id: typeLabel
-                text: model.station_id
-                anchors.verticalCenter: parent.verticalCenter
-                color: delegateItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-                x: Theme.paddingLarge
+            Rectangle {
+                id: metarbox
+                radius: Theme.paddingMedium
+                color: Theme.rgba(Theme.highlightColor, 0.4)
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: Theme.horizontalPageMargin
+                anchors.rightMargin: Theme.horizontalPageMargin
+                height: implicitHeight + stationLabel.height + locationLabel.height + temperaturLabel.height + boxpositionlabel.height
+
+                Label {
+                    id: stationLabel
+                    anchors.top: parent.top
+                    font.pixelSize: Theme.fontSizeMedium
+                    font.bold: true
+                    text: model.station_id
+                    verticalAlignment: Text.AlignBottom
+                    height: implicitHeight + Theme.paddingMedium
+                }
+
+                Label {
+                    id: locationLabel
+                    anchors.top: stationLabel.bottom
+                    font.pixelSize: Theme.fontSizeTiny
+                    color: Theme.secondaryColor
+                    text: model.location
+                    verticalAlignment: Text.AlignVCenter
+                    height: implicitHeight + Theme.paddingSmall
+                }
+                Label {
+                    id: temperaturLabel
+                    anchors.top: locationLabel.bottom
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.secondaryColor
+                    text: model.temp_c
+                    wrapMode: Text.WordWrap
+                    verticalAlignment: Text.AlignVCenter
+                    height: implicitHeight + Theme.paddingMedium
+                }
+                Image {
+                    id: boxpositionicon
+                    source: "image://theme/icon-s-task"
+                    anchors {
+                        top: temperaturLabel.bottom
+                        left: parent.left
+                        leftMargin: Theme.horizontalPageMargin
+                    }
+                }
+
+                Label {
+                    id: boxpositionlabel
+                    anchors {
+                        verticalCenter: boxpositionicon.verticalCenter
+                        left: boxpositionicon.right
+                        leftMargin: 0
+                    }
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: model.wind_dir_degrees + qsTr(" wit ") + model.wind_speed_kt + " kt"
+                    color: Theme.secondaryColor
+                    verticalAlignment: Text.AlignVCenter
+                    truncationMode: TruncationMode.Fade
+                }
+
+
+
             }
 
             Component {
@@ -43,7 +106,6 @@ Page {
                 }
             }
         }
-        anchors.fill: parent
 
         VerticalScrollDecorator {}
 

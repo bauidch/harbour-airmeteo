@@ -99,9 +99,8 @@ ApplicationWindow
                 wind_dir_degrees: wind_dir_degrees,
                 wind_speed_kt: wind_speed_kt
             })
-            console.log(metars)
             console.log(metars[0].station_id, metars[0].name, metars[0].raw_text)
-            metarBank.saveMETARS(metars)
+            metarBank.saveMETAR(metars[0])
 
         });
 

@@ -62,12 +62,28 @@ Page {
                 }
             }
             Row {
+                x: 50
+
+                Label {
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    text: "aviationweather.gov, airport-data.com"
+                }
+            }
+            Row {
                 x: Theme.paddingLarge
 
                 Label {
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.highlightColor
                     text: qsTr("Credits:")
+                }
+            }
+            Row {
+                x: 50
+
+                Label {
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    text: "harbour-meteoswiss"
                 }
             }
 

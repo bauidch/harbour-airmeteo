@@ -13,10 +13,12 @@ CoverBackground {
 
         CoverAction {
             iconSource: "image://theme/icon-cover-next"
+
         }
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
+            iconSource: "image://theme/icon-cover-refresh"
+            onTriggered: updateMetarsToStorage()
         }
     }
 }
