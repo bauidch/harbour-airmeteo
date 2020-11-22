@@ -73,12 +73,8 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/AddStationDialog.qml"))
             }
             MenuItem {
-                text: qsTr("Station")
-                onClicked: pageStack.push(Qt.resolvedUrl("StationPage.qml"))
-            }
-            MenuItem {
                 text: qsTr("Refresh Data")
-                //onClicked: favoritesBank.addItem(stationPage.stationIcaoId)
+                onClicked: updateMetarsToStorage()
             }
         }
     }

@@ -109,6 +109,6 @@ Dialog {
     }
     onAccepted:{
         loadDataToStorage(stationInput.text)
-        console.log(stationInput.text, stationName.text, stationLocation.text,stationCountry.text)
+        reloadMetarsData()
     }
 }

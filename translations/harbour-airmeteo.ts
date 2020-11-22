@@ -85,10 +85,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Station</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add Station</source>
         <translation type="unfinished"></translation>
     </message>
@@ -104,10 +100,6 @@
 <context>
     <name>StationPage</name>
     <message>
-        <source>Add to Favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Raw</source>
         <translation type="unfinished"></translation>
     </message>
@@ -120,10 +112,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Update at </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Wind Direction</source>
         <translation type="unfinished"></translation>
     </message>
@@ -133,6 +121,10 @@
     </message>
     <message>
         <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update at </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

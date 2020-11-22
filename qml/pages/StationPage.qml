@@ -9,13 +9,29 @@ Page {
     id: stationPage
     property string stationCode
 
+    Component.onCompleted: {
+         loadMetar()
+    }
+
+    function loadMetar() {
+        var metar = metarBank.getMETAR(stationCode)
+        rawMETARLabel.text = metar[0].raw_text
+        temperatur.valueLabelText =  metar[0].temp_c + " C"
+        dewpoint.valueLabelText = metar[0].dewpoint_c + " C"
+        windDirection.valueLabelText = metar[0].wind_dir_degrees + " Grad"
+        windSpeed.valueLabelText = metar[0].wind_speed_kt + " kt"
+        metarUpdateTime.text = qsTr("Update at ") + metar[0].observation_time
+        subLabel.text = metar[0].location
+
+    }
+
     SilicaFlickable {
            anchors.fill: parent
 
            PullDownMenu {
                MenuItem {
                    text: qsTr("Refresh")
-                   onClicked: loadDataToStorage(stationCode)
+                   //onClicked: loadDataToStorage(stationCode)
                }
            }
 
@@ -37,7 +53,6 @@ Page {
             title: stationCode
             Label {
                 id: subLabel
-                text: "Zurich"
                 color: Theme.highlightColor
                 anchors {
                     right: parent.right
@@ -97,66 +112,13 @@ Page {
         Label {
             id: metarUpdateTime
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Updatet at 22"
+            text: "Updatet at"
             color: Theme.secondaryHighlightColor
             font.pixelSize: Theme.fontSizeTiny
         }
 
     }
 
-    Component.onCompleted {
-        loadMetar()
-    }
-
-    function loadMetar() {
-        var metar = metarBank.getMETAR(stationCode)
-
-    }
-
-    Python {
-        id: python
-
-        Component.onCompleted: {
-            addImportPath(Qt.resolvedUrl('.'));
-
-            importModule('airdata', function () {
-                python.call('airdata.getMetar', [stationCode], function(result) {
-                    if (result.length <= 0) {
-                       stationPage.noData = "True"
-                       console.log('QML Debug: No Data')
-                    }
-
-                    for (var i=0; i<result.length; i++) {
-                        if (result[i].type === "raw_text") {
-                            rawMETARLabel.text =  result[i].value
-                        }
-
-                        if (result[i].type === "temp_c") {
-                            temperatur.valueLabelText =  result[i].value + " C"
-                        }
-                        if (result[i].type === "dewpoint_c") {
-                            dewpoint.valueLabelText = result[i].value + " C"
-                        }
-                        if (result[i].type === "wind_dir_degrees") {
-                            windDirection.valueLabelText = result[i].value + " Grad"
-                        }
-                        if (result[i].type === "wind_speed_kt") {
-                            windSpeed.valueLabelText = result[i].value + " kt"
-                        }
-
-                        if (result[i].type === "observation_time") {
-                            metarUpdateTime.text = qsTr("Update at ") + result[i].value
-                        }
-                    }
-                });
-            });
-        }
-
-        onError: {
-            console.log('python error: ' + traceback);
-        }
-
-    }
     }
 
 }

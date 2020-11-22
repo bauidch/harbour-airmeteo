@@ -26,7 +26,6 @@ ApplicationWindow
     function loadMETARSFromStorageToModel() {
         var metars = metarBank.getMETARS()
         for (var i = 0; i < metars.length; ++i) {
-            console.log("Load Metars to Model: ",  metars[i].station_id)
             metarModel.append(
             {
                 station_id: metars[i].station_id,
@@ -46,7 +45,7 @@ ApplicationWindow
 
     function reloadMetarsData() {
         metarModel.clear()
-        loadMETARSFromStorage()
+        loadMETARSFromStorageToModel()
     }
 
     function updateMetarsToStorage() {
