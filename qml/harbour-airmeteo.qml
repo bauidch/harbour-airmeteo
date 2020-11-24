@@ -100,7 +100,7 @@ ApplicationWindow
                 wind_speed_kt: wind_speed_kt
             })
             console.log(metars[0].station_id, metars[0].name, metars[0].raw_text)
-            metarBank.saveMETAR(metars[0])
+            metarBank.saveMETAR(metars[0]) # <--- Einzeln die Parameter übergeben oder ne eigene Fuktion im Storage.qml erstellen
 
         });
 
