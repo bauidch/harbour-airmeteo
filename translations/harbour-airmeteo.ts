@@ -65,6 +65,10 @@
 <context>
     <name>OverviewPage</name>
     <message>
+        <source>° with </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
@@ -74,6 +78,10 @@
     </message>
     <message>
         <source>No Stations yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull down to add stations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -89,15 +97,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pull down to add stations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Refresh Data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> wit </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

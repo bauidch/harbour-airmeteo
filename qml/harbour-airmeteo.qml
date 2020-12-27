@@ -24,6 +24,7 @@ ApplicationWindow
     }
 
     function loadMETARSFromStorageToModel() {
+        metarModel.clear()
         var metars = metarBank.getMETARS()
         for (var i = 0; i < metars.length; ++i) {
             metarModel.append(
@@ -51,7 +52,39 @@ ApplicationWindow
     function updateMetarsToStorage() {
         var metars = metarBank.getMETARS()
         for (var i = 0; i < metars.length; ++i) {
-           loadDataToStorage(metars[i].station_id)
+            var station_id = metars[i].station_id
+            console.log("Update: " + station_id )
+            python.call('airdata.getMetar', [station_id], function(result) {
+                if (result.length <= 0) {
+                   console.log('QML Debug: No Data')
+                }
+
+                for (var i=0; i<result.length; i++) {
+                    if (result[i].type === "raw_text") {
+                        var raw_text =  result[i].value
+                    }
+
+                    if (result[i].type === "temp_c") {
+                        var temp_c =  result[i].value
+                    }
+                    if (result[i].type === "dewpoint_c") {
+                        var dewpoint_c = result[i].value
+                    }
+                    if (result[i].type === "wind_dir_degrees") {
+                        var wind_dir_degrees = result[i].value
+                    }
+                    if (result[i].type === "wind_speed_kt") {
+                        var wind_speed_kt = result[i].value
+                    }
+
+                    if (result[i].type === "observation_time") {
+                        var observation_time = result[i].value
+                    }
+                }
+
+                metarBank.updateMETAR(station_id, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt)
+
+            });
        }
     }
 
@@ -86,21 +119,7 @@ ApplicationWindow
 
             var data = Client.getAirportData(station_id)
 
-            var metars = []
-            metars.push({
-                station_id: station_id,
-                name: data[0].name,
-                location: data[0].location,
-                country: data[0].country,
-                raw_text: raw_text,
-                observation_time: observation_time,
-                temp_c: temp_c,
-                dewpoint_c: dewpoint_c,
-                wind_dir_degrees: wind_dir_degrees,
-                wind_speed_kt: wind_speed_kt
-            })
-            console.log(metars[0].station_id, metars[0].name, metars[0].raw_text)
-            metarBank.saveMETAR(metars[0]) # <--- Einzeln die Parameter übergeben oder ne eigene Fuktion im Storage.qml erstellen
+            metarBank.saveMETAR(station_id, data[0].name,  data[0].location,data[0].country, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt)
 
         });
 

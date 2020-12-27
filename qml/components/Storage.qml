@@ -113,21 +113,19 @@ ListModel {
                   }
               )
           }
-     function deleteMETARS(station_id) {
+     function updateMETAR(station_id, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt) {
+              __db().transaction(
+                  function(tx) {
+                      __ensureTables(tx);
+                      tx.executeSql("UPDATE metars SET raw_text=?, observation_time=?, temp_c=?, dewpoint_c=?, wind_dir_degrees=?, wind_speed_kt=? WHERE station_id==?", [raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt, station_id]);
+                  }
+              )
+          }
+     function deleteMETAR(station_id) {
               __db().transaction(
                   function(tx) {
                       tx.executeSql("DELETE FROM metars WHERE station_id=?", [station_id]);
                   }
               )
           }
-     function saveMETARS(metars) {
-         if(!cleanTable('metars')) {
-            return false;
-         }
-         for (var i = 0; i < metars.length; ++i) {
-            var metar = metars[i];
-            saveMETAR(metar.station_id, metar.name, metar.location, metar.country, metar.raw_text, metar.observation_time, metar.temp_c, metar.dewpoint_c, metar.wind_dir_degrees, metar.wind_speed_kt);
-         }
-         return true;
-     }
 }

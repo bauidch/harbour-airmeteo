@@ -20,7 +20,7 @@ Page {
             menu: contextMenu
             ListView.onRemove: animateRemoval()
             function deleteItem() {
-                metarBank.deleteMETARS(model.station_id);
+                metarBank.deleteMETAR(model.station_id);
                 metarModel.remove(index)
                 reloadMetarsData()
             }
@@ -31,8 +31,7 @@ Page {
 
             Rectangle {
                 id: metarbox
-                radius: Theme.paddingMedium
-                color: Theme.rgba(Theme.highlightColor, 0.4)
+                color: Theme.rgba(Theme.highlightColor, 0)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: Theme.horizontalPageMargin
@@ -63,7 +62,7 @@ Page {
                     anchors.top: locationLabel.bottom
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.secondaryColor
-                    text: model.temp_c
+                    text: model.temp_c + "° C"
                     wrapMode: Text.WordWrap
                     verticalAlignment: Text.AlignVCenter
                     height: implicitHeight + Theme.paddingMedium
@@ -86,7 +85,7 @@ Page {
                         leftMargin: 0
                     }
                     font.pixelSize: Theme.fontSizeSmall
-                    text: model.wind_dir_degrees + qsTr(" wit ") + model.wind_speed_kt + " kt"
+                    text: model.wind_dir_degrees + qsTr("° with ") + model.wind_speed_kt + " kt"
                     color: Theme.secondaryColor
                     verticalAlignment: Text.AlignVCenter
                     truncationMode: TruncationMode.Fade
@@ -94,6 +93,13 @@ Page {
 
 
 
+            }
+            Rectangle {
+                anchors.fill: parent
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "transparent" }
+                    GradientStop { position: 1.0; color: Theme.rgba(Theme.secondaryColor, 0.05) }
+                }
             }
 
             Component {
@@ -125,10 +131,6 @@ Page {
             MenuItem {
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-            MenuItem {
-                text: qsTr("Settings")
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingsePage.qml"))
             }
             MenuItem {
                 text: qsTr("Add Station")

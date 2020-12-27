@@ -65,39 +65,39 @@
 <context>
     <name>OverviewPage</name>
     <message>
+        <source>° with </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Remove</source>
-        <translation>Entfernen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Removing</source>
-        <translation>Entferne</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No Stations yet</source>
-        <translation>Keine Station</translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation>Über</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation>Einstellungen</translation>
-    </message>
-    <message>
-        <source>Add Station</source>
-        <translation>Station hinzufügen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Pull down to add stations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Refresh Data</source>
-        <translation>Daten aktualisieren</translation>
+        <source>About</source>
+        <translation type="unfinished">Über</translation>
     </message>
     <message>
-        <source> wit </source>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Station</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh Data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

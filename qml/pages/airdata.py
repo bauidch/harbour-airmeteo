@@ -13,26 +13,24 @@ import xml.etree.ElementTree as ET
 import json
 
 def httpGet(url):
-	req = urllib.request.Request(url=url, method='GET')
-	res = urllib.request.urlopen(req)
-	res_body = res.read()
-	return res_body
+    req = urllib.request.Request(url=url, method='GET')
+    res = urllib.request.urlopen(req)
+    res_body = res.read()
+    return res_body
 
 
 def getMetar(icao):
-	res_body = httpGet("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&hoursBeforeNow=1&format=xml&mostRecent=true&stationString=" + icao)
-	tree = ET.fromstring(res_body)
-	metar = []
-       # add status code with error Label
-	for child in tree:
-		if child.tag == "data":
-			for boo in child:
-				if boo.tag == "METAR":
-					for item in boo:
-						if item.tag == "sky_condition":
-							metar.append({'type': item.tag + "_" + item.attrib['sky_cover'], 'value': item.attrib['cloud_base_ft_agl']})
-						else:
-							if item.tag != "quality_control_flags":
-								metar.append({'type': item.tag, 'value': item.text})
+    res_body = httpGet("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&hoursBeforeNow=1&format=xml&mostRecent=true&stationString=" + icao)
+    tree = ET.fromstring(res_body)
+    metar = []
+    # add status code with error Label
+    for child in tree:
+        if child.tag == "data":
+            for boo in child:
+                if boo.tag == "METAR":
+                    for item in boo:
+                        if item.tag != "quality_control_flags":
+                            metar.append({'type': item.tag, 'value': item.text})
 
-        return metar
+    print(metar)
+    return metar

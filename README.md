@@ -1,7 +1,6 @@
 # AirMeteo
 METAR Client
 
-
 ## Description
 Show the METAR of your Favourite Airports
 
@@ -14,16 +13,13 @@ Show the METAR of your Favourite Airports
  - [harbour-opensensefish](https://gitlab.com/nobodyinperson/harbour-opensensefish)
  
 ## ToDo
+- Better UI
 - Icons
-- Cover interaction
+- Better Cover interaction
 - TAF
 - All Request in JS
 - Multiple Data Resources
-- App Icon
 - Search Function
 - From RAW to Decode(own implementation)
+- Better Error handling
 
-## Dev Hints:
-- https://openrepos.net/content/ade/welkweer
-- https://github.com/ichthyosaurus/harbour-meteoswiss - cover action
-- https://gitlab.com/nobodyinperson/harbour-opensensefish

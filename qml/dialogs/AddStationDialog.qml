@@ -109,7 +109,7 @@ Dialog {
     }
     onAccepted:{
         loadDataToStorage(stationInput.text)
-        reloadMetarsData()
+        //reloadMetarsData()
         console.log(stationInput.text)
     }
 }

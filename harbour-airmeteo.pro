@@ -22,7 +22,6 @@ DISTFILES += qml/harbour-airmeteo.qml \
     qml/cover/CoverPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/OverviewPage.qml \
-    qml/pages/SettingsPage.qml \
     qml/pages/StationPage.qml \
     rpm/harbour-airmeteo.changes.in \
     rpm/harbour-airmeteo.changes.run.in \

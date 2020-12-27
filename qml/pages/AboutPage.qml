@@ -83,9 +83,11 @@ Page {
 
                 Label {
                     font.pixelSize: Theme.fontSizeExtraSmall
-                    text: "harbour-meteoswiss"
+                    text: "harbour-meteoswiss, welkweer, harbour-opensensefish"
                 }
             }
+
+
 
         }
    }
