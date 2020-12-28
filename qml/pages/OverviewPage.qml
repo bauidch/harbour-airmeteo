@@ -57,21 +57,24 @@ Page {
                     verticalAlignment: Text.AlignVCenter
                     height: implicitHeight + Theme.paddingSmall
                 }
+
                 Label {
                     id: temperaturLabel
-                    anchors.top: locationLabel.bottom
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.secondaryColor
                     text: model.temp_c + "° C"
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                    height: implicitHeight + Theme.paddingMedium
+                    color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeLarge
+
+                    anchors {
+                        top: parent.top; topMargin: Theme.paddingSmall
+                        right: parent.right; rightMargin: Theme.horizontalPageMargin
+                    }
                 }
+
                 Image {
                     id: boxpositionicon
                     source: "image://theme/icon-s-task"
                     anchors {
-                        top: temperaturLabel.bottom
+                        top: locationLabel.bottom
                         left: parent.left
                         leftMargin: Theme.horizontalPageMargin
                     }
@@ -138,7 +141,11 @@ Page {
             }
             MenuItem {
                 text: qsTr("Refresh Data")
-                onClicked: updateMetarsToStorage()
+                onClicked: {
+                    updateMetarsToStorage()
+                    reloadMetarsData()
+                }
+
             }
         }
     }

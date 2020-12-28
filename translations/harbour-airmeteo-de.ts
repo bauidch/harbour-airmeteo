@@ -5,11 +5,7 @@
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished">Über</translation>
-    </message>
-    <message>
-        <source>AirMeteo version: 0.1</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
         <source>Author:</source>
@@ -25,6 +21,18 @@
     </message>
     <message>
         <source>Credits:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AirMeteo version: 0.2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disclaimer:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not for operational use! The data used on this app could be outdated, inaccurate or contain errors. Always use up-to-date official service from your airport for flight planning.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -52,7 +60,7 @@
     </message>
     <message>
         <source>Station not Found, try again</source>
-        <translation type="unfinished"></translation>
+        <translation>Station nicht gefunden, versuche es nochmal</translation>
     </message>
 </context>
 <context>
@@ -66,45 +74,61 @@
     <name>OverviewPage</name>
     <message>
         <source>° with </source>
-        <translation type="unfinished"></translation>
+        <translation">° mit </translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <source>Removing</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne</translation>
     </message>
     <message>
         <source>No Stations yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Stationen</translation>
     </message>
     <message>
         <source>Pull down to add stations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ziehe herunter um Stationen hinzufügen</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished">Über</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
         <source>Add Station</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <source>Refresh Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
 </context>
 <context>
     <name>StationPage</name>
     <message>
-        <source>Raw</source>
+        <source>Update at </source>
+        <translation>Aktualisiert am</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>RAW</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Decoded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visibility</source>
+        <translation>Sicht</translation>
+    </message>
+    <message>
+        <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -113,23 +137,11 @@
     </message>
     <message>
         <source>Dewpoint</source>
-        <translation type="unfinished">Taupunkt</translation>
+        <translation>Taupunkt</translation>
     </message>
     <message>
-        <source>Wind Direction</source>
-        <translation>Windrichtung</translation>
-    </message>
-    <message>
-        <source>Wind Speed</source>
-        <translation>Windgeschwindigkeit</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
-        <source>Update at </source>
-        <translation type="unfinished"></translation>
+        <source>Air Presure</source>
+        <translation>Luftdruck</translation>
     </message>
 </context>
 </TS>

@@ -12,7 +12,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-1
-- Scrubbed the deck
-- Hoisted the sails
+* Sun Dec 27 2020 bauidch <info@bauidc.ch> 0.1-1
+- Add Metar Info
 
+* Mon Dec 28 2020 bauidch <info@bauidc.ch> 0.2-1
+- Bug fixes

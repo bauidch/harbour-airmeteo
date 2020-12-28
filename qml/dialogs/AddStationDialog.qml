@@ -76,27 +76,32 @@ Dialog {
                 width: parent.width
                 text: qsTr("Station not Found, try again")
                 visible: false
+                x: Theme.paddingLarge
             }
             Label {
                 id: stationIcao
                 width: parent.width
                 text: "ZZZZ"
                 visible: false
+                x: Theme.paddingLarge
             }
             Label {
                 id: stationName
                 width: parent.width
                 visible: false
+                x: Theme.paddingLarge
             }
             Label {
                 id: stationLocation
                 width: parent.width
                 visible: false
+                x: Theme.paddingLarge
             }
             Label {
                 id: stationCountry
                 width: parent.width
                 visible: false
+                x: Theme.paddingLarge
             }
 
         }

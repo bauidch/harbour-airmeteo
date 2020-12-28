@@ -16,10 +16,19 @@ Page {
     function loadMetar() {
         var metar = metarBank.getMETAR(stationCode)
         rawMETARLabel.text = metar[0].raw_text
-        temperatur.valueLabelText =  metar[0].temp_c + " C"
-        dewpoint.valueLabelText = metar[0].dewpoint_c + " C"
-        windDirection.valueLabelText = metar[0].wind_dir_degrees + " Grad"
-        windSpeed.valueLabelText = metar[0].wind_speed_kt + " kt"
+
+        var pressureRex = /Q([0-9]{3,4})/
+        var pressureValue = pressureRex.exec(metar[0].raw_text)
+
+        var visibilityRex =  /\b(CAVOK|[PM]?([0-9]{4})|([0-9] )?([0-9]{1,2})([0-9])?(SM|KM))\b/
+        var visibilityValue = visibilityRex.exec(metar[0].raw_text)
+
+        view.valueLabelText = visibilityValue[1]
+        presure.valueLabelText = pressureValue[1] + " hPa"
+        temperatur.valueLabelText =  metar[0].temp_c + "° C"
+        dewpoint.valueLabelText = metar[0].dewpoint_c + "° C"
+        wind.valueLabelText = metar[0].wind_dir_degrees + "° with " + metar[0].wind_speed_kt + " kt"
+
         metarUpdateTime.text = qsTr("Update at ") + metar[0].observation_time
         subLabel.text = metar[0].location
 
@@ -31,14 +40,10 @@ Page {
            PullDownMenu {
                MenuItem {
                    text: qsTr("Refresh")
-                   //onClicked: loadDataToStorage(stationCode)
-               }
-           }
-
-           PushUpMenu {
-               MenuItem {
-                   text: qsTr("Raw") // dataMode RAW Decoded
-                   //onClicked: test_airdata.getMETAR("LSZH")
+                   onClicked: {
+                       updateMetarsToStorage()
+                       reloadMetarsData()
+                   }
                }
            }
 
@@ -71,7 +76,7 @@ Page {
         SectionHeader {
             font.pixelSize: Theme.fontSizeMedium
             color: Theme.secondaryHighlightColor
-            text: "METAR"
+            text: qsTr("RAW")
             wrapMode: Text.Wrap
         }
         Column {
@@ -90,7 +95,21 @@ Page {
 
             }
         }
+        SectionHeader {
+            font.pixelSize: Theme.fontSizeMedium
+            color: Theme.secondaryHighlightColor
+            text: qsTr("Decoded")
+            wrapMode: Text.Wrap
+        }
 
+        AirDataIteam {
+            id: view
+            typeLabelText: qsTr("Visibility")
+        }
+        AirDataIteam {
+            id: wind
+            typeLabelText: qsTr("Wind")
+        }
         AirDataIteam {
             id: temperatur
             typeLabelText: qsTr("Temperatur")
@@ -101,13 +120,10 @@ Page {
             typeLabelText: qsTr("Dewpoint")
         }
         AirDataIteam {
-            id: windDirection
-            typeLabelText: qsTr("Wind Direction")
+            id: presure
+            typeLabelText: qsTr("Air Presure")
         }
-        AirDataIteam {
-            id: windSpeed
-            typeLabelText: qsTr("Wind Speed")
-        }
+
 
         Label {
             id: metarUpdateTime

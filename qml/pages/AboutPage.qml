@@ -26,7 +26,7 @@ Page {
                  }
             }
             Label {
-                text: qsTr("AirMeteo version: 0.1")
+                text: qsTr("AirMeteo version: 0.2")
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeMedium
                 anchors {
@@ -51,6 +51,29 @@ Page {
                     text: qsTr("bauidch")
                 }
             }
+            Row {
+                x: Theme.paddingLarge
+
+                Label {
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.highlightColor
+                    text: qsTr("Disclaimer:")
+                }
+            }
+
+            Row {
+                x: Theme.paddingLarge
+                width: parent.width - 2*x
+                spacing: Theme.paddingLarge
+
+                Label {
+                    text: qsTr("Not for operational use! The data used on this app could be outdated, inaccurate or contain errors. Always use up-to-date official service from your airport for flight planning.")
+                    color: Theme.primaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                    wrapMode: Text.Wrap
+                    width: parent.width
+                }
+            }
 
             Row {
                 x: Theme.paddingLarge
@@ -66,6 +89,7 @@ Page {
 
                 Label {
                     font.pixelSize: Theme.fontSizeExtraSmall
+                    wrapMode: Text.Wrap
                     text: "aviationweather.gov, airport-data.com"
                 }
             }
@@ -83,6 +107,7 @@ Page {
 
                 Label {
                     font.pixelSize: Theme.fontSizeExtraSmall
+                    wrapMode: Text.Wrap
                     text: "harbour-meteoswiss, welkweer, harbour-opensensefish"
                 }
             }

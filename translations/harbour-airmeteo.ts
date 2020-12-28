@@ -8,7 +8,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>AirMeteo version: 0.1</source>
+        <source>AirMeteo version: 0.2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -17,6 +17,14 @@
     </message>
     <message>
         <source>bauidch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disclaimer:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not for operational use! The data used on this app could be outdated, inaccurate or contain errors. Always use up-to-date official service from your airport for flight planning.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -89,10 +97,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add Station</source>
         <translation type="unfinished"></translation>
     </message>
@@ -104,7 +108,27 @@
 <context>
     <name>StationPage</name>
     <message>
-        <source>Raw</source>
+        <source>Update at </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RAW</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Decoded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -116,19 +140,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wind Direction</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wind Speed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update at </source>
+        <source>Air Presure</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

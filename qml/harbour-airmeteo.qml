@@ -53,7 +53,6 @@ ApplicationWindow
         var metars = metarBank.getMETARS()
         for (var i = 0; i < metars.length; ++i) {
             var station_id = metars[i].station_id
-            console.log("Update: " + station_id )
             python.call('airdata.getMetar', [station_id], function(result) {
                 if (result.length <= 0) {
                    console.log('QML Debug: No Data')

@@ -68,7 +68,10 @@ CoverBackground {
 
         CoverAction {
             iconSource: "image://theme/icon-cover-refresh"
-            onTriggered: updateMetarsToStorage()
+            onTriggered: {
+                updateMetarsToStorage()
+                reloadMetarsData()
+            }
         }
     }
     function updateData(index) {
