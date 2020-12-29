@@ -1,10 +1,12 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
+import "../js/client.js" as Client
 
 CoverBackground {
     property var stationID: undefined
     property int coverIndex: 0
     property var temperaturText: undefined
+    property var humidityText: undefined
 
     Label {
         id: label
@@ -37,6 +39,14 @@ CoverBackground {
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
                 text: temperaturText + "° C"
+                truncationMode: TruncationMode.Fade
+            }
+
+            Label {
+                width: parent.width
+                font.pixelSize: Theme.fontSizeMedium
+                color: Theme.secondaryColor
+                text: humidityText + "%"
                 truncationMode: TruncationMode.Fade
             }
 
@@ -78,6 +88,7 @@ CoverBackground {
         var metars = metarBank.getMETARS()
         stationID = metars[index].station_id
         temperaturText = metars[index].temp_c
+        humidityText = Client.humidity(metars[index].temp_c, metars[index].dewpoint_c)
 
     }
 

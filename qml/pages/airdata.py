@@ -32,5 +32,4 @@ def getMetar(icao):
                         if item.tag != "quality_control_flags":
                             metar.append({'type': item.tag, 'value': item.text})
 
-    print(metar)
     return metar

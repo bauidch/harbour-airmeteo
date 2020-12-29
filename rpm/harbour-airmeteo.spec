@@ -9,7 +9,7 @@ Name:       harbour-airmeteo
 # << macros
 
 Summary:    METAR Client
-Version:    0.2
+Version:    0.3
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE

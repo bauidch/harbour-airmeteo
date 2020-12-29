@@ -8,10 +8,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>AirMeteo version: 0.2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Author:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -108,10 +104,6 @@
 <context>
     <name>StationPage</name>
     <message>
-        <source>Update at </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -141,6 +133,26 @@
     </message>
     <message>
         <source>Air Presure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updated at </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Humidity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 km and more</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>° with </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clouds and Visibility OK</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1,11 +1,14 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
-import ".."
 import "../components"
+import ".."
+import "../pages"
 import "../js/client.js" as Client
 
 Dialog {
     id: stationsDialog
+    property bool deactivateAccept: false
+    canAccept: deactivateAccept
 
     SilicaFlickable {
         id: pageFlickable
@@ -58,6 +61,8 @@ Dialog {
 
                            stationCountry.visible = true
                            stationCountry.text = data[0].country
+
+                           deactivateAccept = true
                        }
 
                     }
@@ -113,8 +118,6 @@ Dialog {
         flickable: pageFlickable
     }
     onAccepted:{
-        loadDataToStorage(stationInput.text)
-        //reloadMetarsData()
-        console.log(stationInput.text)
+      loadDataToStorage(stationInput.text)
     }
 }

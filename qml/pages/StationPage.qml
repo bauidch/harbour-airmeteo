@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.5
 import ".."
 import "../components"
+import "../js/client.js" as Client
 
 
 Page {
@@ -22,15 +23,22 @@ Page {
 
         var visibilityRex =  /\b(CAVOK|[PM]?([0-9]{4})|([0-9] )?([0-9]{1,2})([0-9])?(SM|KM))\b/
         var visibilityValue = visibilityRex.exec(metar[0].raw_text)
+        if (visibilityValue[1] === "9999")
+            visibilityValue = qsTr("10 km and more")
+        else if (visibilityValue[1] === "CAVOK")
+            visibilityValue = qsTr("Clouds and Visibility OK")
+        else
+            visibilityValue = visibilityValue[1] + " km"
 
-        view.valueLabelText = visibilityValue[1]
+        view.valueLabelText = visibilityValue
         presure.valueLabelText = pressureValue[1] + " hPa"
         temperatur.valueLabelText =  metar[0].temp_c + "° C"
         dewpoint.valueLabelText = metar[0].dewpoint_c + "° C"
-        wind.valueLabelText = metar[0].wind_dir_degrees + "° with " + metar[0].wind_speed_kt + " kt"
+        humidity.valueLabelText = Client.humidity(metar[0].temp_c, metar[0].dewpoint_c) + "%"
+        wind.valueLabelText = metar[0].wind_dir_degrees + qsTr("° with ") + metar[0].wind_speed_kt + " kt"
 
-        metarUpdateTime.text = qsTr("Update at ") + metar[0].observation_time
-        subLabel.text = metar[0].location
+        metarUpdateTime.text = qsTr("Updated at ") + metar[0].observation_time
+        subLabel.text = metar[0].location + ", " + metar[0].country
 
     }
 
@@ -43,6 +51,7 @@ Page {
                    onClicked: {
                        updateMetarsToStorage()
                        reloadMetarsData()
+                       loadMetar()
                    }
                }
            }
@@ -114,10 +123,13 @@ Page {
             id: temperatur
             typeLabelText: qsTr("Temperatur")
         }
-
         AirDataIteam {
             id: dewpoint
             typeLabelText: qsTr("Dewpoint")
+        }
+        AirDataIteam {
+            id: humidity
+            typeLabelText: qsTr("Humidity")
         }
         AirDataIteam {
             id: presure
@@ -128,7 +140,7 @@ Page {
         Label {
             id: metarUpdateTime
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Updatet at"
+            text: "Updatedt at"
             color: Theme.secondaryHighlightColor
             font.pixelSize: Theme.fontSizeTiny
         }

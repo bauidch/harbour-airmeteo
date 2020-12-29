@@ -11,9 +11,6 @@ ApplicationWindow
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
 
-    Component.onCompleted: {
-       loadMETARSFromStorageToModel()
-    }
 
     Storage {
         id: metarBank
@@ -24,7 +21,6 @@ ApplicationWindow
     }
 
     function loadMETARSFromStorageToModel() {
-        metarModel.clear()
         var metars = metarBank.getMETARS()
         for (var i = 0; i < metars.length; ++i) {
             metarModel.append(
@@ -58,29 +54,28 @@ ApplicationWindow
                    console.log('QML Debug: No Data')
                 }
 
-                for (var i=0; i<result.length; i++) {
-                    if (result[i].type === "raw_text") {
-                        var raw_text =  result[i].value
+                for (var a=0; a<result.length; a++) {
+                    if (result[a].type === "station_id")
+                        var station_id = result[a].value
+                    if (result[a].type === "raw_text") {
+                        var raw_text = result[a].value
                     }
-
-                    if (result[i].type === "temp_c") {
-                        var temp_c =  result[i].value
+                    if (result[a].type === "temp_c") {
+                        var temp_c = result[a].value
                     }
-                    if (result[i].type === "dewpoint_c") {
-                        var dewpoint_c = result[i].value
+                    if (result[a].type === "dewpoint_c") {
+                        var dewpoint_c = result[a].value
                     }
-                    if (result[i].type === "wind_dir_degrees") {
-                        var wind_dir_degrees = result[i].value
+                    if (result[a].type === "wind_dir_degrees") {
+                        var wind_dir_degrees = result[a].value
                     }
-                    if (result[i].type === "wind_speed_kt") {
-                        var wind_speed_kt = result[i].value
+                    if (result[a].type === "wind_speed_kt") {
+                        var wind_speed_kt = result[a].value
                     }
-
-                    if (result[i].type === "observation_time") {
-                        var observation_time = result[i].value
+                    if (result[a].type === "observation_time") {
+                        var observation_time = result[a].value
                     }
                 }
-
                 metarBank.updateMETAR(station_id, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt)
 
             });
@@ -97,7 +92,6 @@ ApplicationWindow
                 if (result[i].type === "raw_text") {
                     var raw_text =  result[i].value
                 }
-
                 if (result[i].type === "temp_c") {
                     var temp_c =  result[i].value
                 }
@@ -118,7 +112,22 @@ ApplicationWindow
 
             var data = Client.getAirportData(station_id)
 
-            metarBank.saveMETAR(station_id, data[0].name,  data[0].location,data[0].country, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt)
+            metarBank.saveMETAR(station_id, data[0].name, data[0].location, data[0].country, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt)
+
+            metarModel.append(
+            {
+                station_id: station_id,
+                name: data[0].name,
+                location: data[0].location,
+                country:  data[0].country,
+                raw_text: raw_text,
+                observation_time: observation_time,
+                temp_c: temp_c,
+                dewpoint_c: dewpoint_c,
+                wind_dir_degrees: wind_dir_degrees,
+                wind_speed_kt: wind_speed_kt
+            }
+            )
 
         });
 

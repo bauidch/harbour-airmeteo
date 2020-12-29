@@ -1,4 +1,6 @@
 # AirMeteo
+Download on [OpenRepos.net](https://openrepos.net/content/bauidch/airmeteo)
+
 A simply METAR(Meteorological Aviation Report) Client for SailfishOS
 
 ## Description
@@ -27,6 +29,7 @@ Not for operational use! The data used on this app could be outdated, inaccurate
 - Search Function
 - From RAW to Decode(own implementation)
 - Better Error handling
+- Shreenshots
 
 ## Dev Hints
 https://github.com/python-metar/python-metar/blob/master/metar/Metar.py

@@ -81,6 +81,24 @@ ListModel {
          return metars;
      }
 
+     function getCount() {
+         var res = 0
+         __db().transaction(
+             function(tx) {
+                 __ensureTables(tx);
+                 try {
+                     var rs = tx.executeSql('SELECT * FROM metars;', []);
+                     res = rs.rows.length;
+                 }
+                 catch(e) {
+                     console.log("error while loading metars count")
+                 }
+             }
+         )
+
+         return res;
+     }
+
      function cleanTable(table) {
          __db().transaction(
              function(tx) {

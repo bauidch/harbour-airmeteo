@@ -17,3 +17,7 @@
 
 * Mon Dec 28 2020 bauidch <info@bauidc.ch> 0.2-1
 - Bug fixes
+
+* Tue Dec 29 2020 bauidch <info@bauidc.ch> 0.3-1
+- Bug fixes(Refresh and add dialog)
+- Add humidity

@@ -26,7 +26,7 @@ Page {
                  }
             }
             Label {
-                text: qsTr("AirMeteo version: 0.2")
+                text: "AirMeteo version: 0.3"
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeMedium
                 anchors {

@@ -24,12 +24,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>AirMeteo version: 0.2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Disclaimer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Haftung</translation>
     </message>
     <message>
         <source>Not for operational use! The data used on this app could be outdated, inaccurate or contain errors. Always use up-to-date official service from your airport for flight planning.</source>
@@ -74,7 +70,7 @@
     <name>OverviewPage</name>
     <message>
         <source>° with </source>
-        <translation">° mit </translation>
+        <translation>° mit </translation>
     </message>
     <message>
         <source>Remove</source>
@@ -90,7 +86,7 @@
     </message>
     <message>
         <source>Pull down to add stations</source>
-        <translation type="unfinished">Ziehe herunter um Stationen hinzufügen</translation>
+        <translation>Ziehe herunter um Stationen hinzufügen</translation>
     </message>
     <message>
         <source>About</source>
@@ -108,8 +104,8 @@
 <context>
     <name>StationPage</name>
     <message>
-        <source>Update at </source>
-        <translation>Aktualisiert am</translation>
+        <source>Updated at </source>
+        <translation>Aktualisiert am </translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -142,6 +138,22 @@
     <message>
         <source>Air Presure</source>
         <translation>Luftdruck</translation>
+    </message>
+    <message>
+        <source>Humidity</source>
+        <translation>Luftfeuchtigkeit</translation>
+    </message>
+    <message>
+        <source>10 km and more</source>
+        <translation>10 km und mehr</translation>
+    </message>
+    <message>
+        <source>° with </source>
+        <translation>° mit </translation>
+    </message>
+    <message>
+        <source>Clouds and Visibility OK</source>
+        <translation">Wolken und Sicht in Ordnung</translation>
     </message>
 </context>
 </TS>

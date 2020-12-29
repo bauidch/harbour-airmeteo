@@ -44,6 +44,25 @@ function getAirportData(icao) {
         return ret;
 
     } else {
-        console.log('error or no data')
+        console.log('JS: error or no data')
+    }
+}
+
+function humidity(temperatur, dewpoint) {
+
+    var precision = 1;
+    var constA = 17.625;
+    var constB = 243.04;
+
+
+    if ((temperatur != " ") && (dewpoint != " ")) {
+        var rh_numer = 100.0 * Math.exp((constA * eval(dewpoint)) / (eval(dewpoint) + constB));
+        var rh_denom = Math.exp((constA * eval(temperatur)) / (eval(temperatur) + constB));
+        var rh = rh_numer/rh_denom
+        return Math.round(rh)
+
+    } else {
+        console.log("Can't calc the humidity value")
+        return null
     }
 }

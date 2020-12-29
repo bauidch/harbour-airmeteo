@@ -2,10 +2,17 @@ import QtQuick 2.5
 import Sailfish.Silica 1.0
 import "../components"
 import ".."
+import "../js/client.js" as Client
 
 Page {
     id: favoriteList
     allowedOrientations: Orientation.Portrait
+
+    Component.onCompleted: {
+        loadMETARSFromStorageToModel()
+        if (metarModel.count === 0 && metarBank.count === 0)
+            noStationsPlaceholder.enabled = true
+    }
 
     SilicaListView {
         id: favoritesView
@@ -36,7 +43,7 @@ Page {
                 anchors.right: parent.right
                 anchors.leftMargin: Theme.horizontalPageMargin
                 anchors.rightMargin: Theme.horizontalPageMargin
-                height: implicitHeight + stationLabel.height + locationLabel.height + temperaturLabel.height + boxpositionlabel.height
+                height: implicitHeight + stationLabel.height + locationLabel.height + temperaturLabel.height + windpositionlabel.height
 
                 Label {
                     id: stationLabel
@@ -70,21 +77,46 @@ Page {
                     }
                 }
 
+                Label {
+                    id: humidityLabel
+                    text: Client.humidity(model.temp_c, model.dewpoint_c)+ "%"
+                    color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeMedium
+
+                    anchors {
+                        top: temperaturLabel.bottom; topMargin: Theme.paddingSmall
+                        right: parent.right; rightMargin: Theme.horizontalPageMargin
+                    }
+                }
+                Rectangle {
+                    id: autoLabel
+                    visible: false
+                    color: Theme.highlightBackgroundColor
+                    anchors {
+                        top: humidityLabel.bottom; topMargin: Theme.paddingSmall
+                        right: parent.right; rightMargin: Theme.horizontalPageMargin
+                    }
+                    height: Theme.itemSizeSmall
+                    Label {
+                       text: "Auto"
+                       anchors.centerIn: parent
+                    }
+                }
+
                 Image {
-                    id: boxpositionicon
+                    id: windpositionicon
                     source: "image://theme/icon-s-task"
                     anchors {
                         top: locationLabel.bottom
                         left: parent.left
-                        leftMargin: Theme.horizontalPageMargin
                     }
                 }
 
                 Label {
-                    id: boxpositionlabel
+                    id: windpositionlabel
                     anchors {
-                        verticalCenter: boxpositionicon.verticalCenter
-                        left: boxpositionicon.right
+                        verticalCenter: windpositionicon.verticalCenter
+                        left: windpositionicon.right
                         leftMargin: 0
                     }
                     font.pixelSize: Theme.fontSizeSmall
@@ -120,7 +152,8 @@ Page {
 
 
         ViewPlaceholder {
-            enabled: metarModel.count === 0
+            id: noStationsPlaceholder
+            enabled: false
             text: qsTr("No Stations yet")
             hintText: qsTr("Pull down to add stations")
 
