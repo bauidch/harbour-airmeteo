@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>Clouds and Visibility OK</source>
-        <translation">Wolken und Sicht in Ordnung</translation>
+        <translation>Wolken und Sicht in Ordnung</translation>
     </message>
 </context>
 </TS>
