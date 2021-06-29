@@ -25,7 +25,7 @@ Not for operational use! The data used on this app could be outdated, inaccurate
 
 ## ToDo
 - Better UI
-- Icons(wind, etc..)
+- Icons(wind, etc..) evtl... https://github.com/lucide-icons/lucide
 - Better Cover interaction
 - TAF
 - All Request in JS
@@ -33,6 +33,7 @@ Not for operational use! The data used on this app could be outdated, inaccurate
 - From RAW to Decode(own implementation)
 - Better Error handling
 - Manual Airport adding, when not exist in airport-data.com
+- Sort Function
 
 ## Dev Hints
 https://github.com/python-metar/python-metar/blob/master/metar/Metar.py

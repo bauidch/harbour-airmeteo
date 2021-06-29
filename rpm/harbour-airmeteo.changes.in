@@ -12,12 +12,16 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Sun Dec 27 2020 bauidch <info@bauidc.ch> 0.1-1
+* Sun Dec 27 2020 bauidch <info@bauid.ch> 0.1-1
 - Add Metar Info
 
-* Mon Dec 28 2020 bauidch <info@bauidc.ch> 0.2-1
+* Mon Dec 28 2020 bauidch <info@bauid.ch> 0.2-1
 - Bug fixes
 
-* Wed Dec 30 2020 bauidch <info@bauidc.ch> 0.3-1
+* Wed Dec 30 2020 bauidch <info@bauid.ch> 0.3-1
 - Bug fixes(Refresh and add dialog)
 - Add humidity
+
+* Thu Jun 29 2021 bauidch <info@bauid.ch> 0.4-1
+- Add Sort function
+- Fix airport data API

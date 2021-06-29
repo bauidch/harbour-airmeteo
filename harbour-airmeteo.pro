@@ -20,6 +20,7 @@ DISTFILES += qml/harbour-airmeteo.qml \
     qml/AddStationDialog.qml \
     qml/components/AirDataIteam.qml \
     qml/cover/CoverPage.qml \
+    qml/dialogs/AddManualStationDialog.qml \
     qml/pages/AboutPage.qml \
     qml/pages/OverviewPage.qml \
     qml/pages/StationPage.qml \

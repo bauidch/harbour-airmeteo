@@ -19,22 +19,44 @@ function httpXMLGet(url) {
     return xmlHttp;
 }
 
-function get_metar(icao) {
-    var locationsRAW = httpXMLGet("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&hoursBeforeNow=1&format=xml&mostRecent=true&stationString=" + icao )
-    console.log(locationsRAW)
-    console.log(locationsRAW.responseText)
-    console.log(locationsRAW.responseXML)
-    console.log(locationsRAW.response)
+//function get_metar(icao) {
+//    var locationsRAW = httpXMLGet("https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&hoursBeforeNow=1&format=xml&mostRecent=true&stationString=" + icao )
+//    console.log(locationsRAW)
+//    console.log(locationsRAW.responseText)
+//    console.log(locationsRAW.responseXML)
+//    console.log(locationsRAW.response)
 
-}
+//}
 
 function getAirportData(icao) {
+    var airportdataRAW = httpGet("https://ourairports.com/airports.json?airport=" + icao)
+
+    try {
+        var location = JSON.parse(airportdataRAW.responseText);
+    } catch (e) {
+        console.log("error: failed to parse json, code was " + airportdataRAW.status);
+    }
+
+    if (airportdataRAW.status >= 200 && airportdataRAW.status < 400) {
+         var ret = [];
+        ret.push({"icao":location.ident, "name":location.name, "location":location.municipality, "country":location.country_name});
+        console.log(ret.icao)
+        //return ret;
+
+    } else {
+        console.log('JS: error or no data')
+        ret.push({"error":"api error Code " +  airportdataRAW.status});
+    }
+}
+
+
+function getAirportDataOLD(icao) {
     var airportdataRAW = httpGet("https://www.airport-data.com/api/ap_info.json?icao=" + icao)
 
     try {
         var location = JSON.parse(airportdataRAW.responseText);
     } catch (e) {
-        console.log("error: failed to parse json");
+        console.log("error: failed to parse json, code was" + airportdataRAW.status);
     }
 
     if (airportdataRAW.status >= 200 && airportdataRAW.status < 400) {

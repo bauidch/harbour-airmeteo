@@ -31,6 +31,37 @@
         <source>Credits:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Icons:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddManualStationDialog</name>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Station</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ICAO Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Station not Found, try again</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddStationDialog</name>
@@ -98,6 +129,10 @@
     </message>
     <message>
         <source>Refresh Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

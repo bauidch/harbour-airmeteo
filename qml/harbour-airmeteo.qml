@@ -20,6 +20,10 @@ ApplicationWindow
         id: metarModel
     }
 
+    function checkForDBMaitanance() {
+       metarBank.checkDB()
+    }
+
     function loadMETARSFromStorageToModel() {
         var metars = metarBank.getMETARS()
         for (var i = 0; i < metars.length; ++i) {
@@ -29,6 +33,7 @@ ApplicationWindow
                 name: metars[i].name,
                 location: metars[i].location,
                 country: metars[i].country,
+                view_position:  metars[i].view_position,
                 raw_text: metars[i].raw_text,
                 observation_time: metars[i].observation_time,
                 temp_c: metars[i].temp_c,
@@ -120,6 +125,7 @@ ApplicationWindow
                 name: data[0].name,
                 location: data[0].location,
                 country:  data[0].country,
+                view_position: 0,
                 raw_text: raw_text,
                 observation_time: observation_time,
                 temp_c: temp_c,

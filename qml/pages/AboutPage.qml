@@ -26,7 +26,7 @@ Page {
                  }
             }
             Label {
-                text: "AirMeteo version: 0.3"
+                text: "AirMeteo version: 0.4"
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeMedium
                 anchors {
@@ -109,6 +109,24 @@ Page {
                     font.pixelSize: Theme.fontSizeExtraSmall
                     wrapMode: Text.Wrap
                     text: "harbour-meteoswiss, welkweer, harbour-opensensefish"
+                }
+            }
+            Row {
+                x: Theme.paddingLarge
+
+                Label {
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.highlightColor
+                    text: qsTr("Icons:")
+                }
+            }
+            Row {
+                x: 50
+
+                Label {
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    wrapMode: Text.Wrap
+                    text: "There are from lucide.dev"
                 }
             }
 
