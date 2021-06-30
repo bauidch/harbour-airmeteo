@@ -9,11 +9,11 @@ Name:       harbour-airmeteo
 # << macros
 
 Summary:    METAR Client
-Version:    0.3
+Version:    0.4
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        http://bauid.ch/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-airmeteo.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9

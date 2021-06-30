@@ -31,6 +31,53 @@
         <source>Credits:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Icons:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddManualStationDialog</name>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Station</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ICAO Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>airport name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>country</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddStationDialog</name>
@@ -56,6 +103,10 @@
     </message>
     <message>
         <source>Station not Found, try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Manually</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -98,6 +149,10 @@
     </message>
     <message>
         <source>Refresh Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

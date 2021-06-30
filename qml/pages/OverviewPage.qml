@@ -9,9 +9,21 @@ Page {
     allowedOrientations: Orientation.Portrait
 
     Component.onCompleted: {
+        checkForDBMaitanance()
         loadMETARSFromStorageToModel()
         if (metarModel.count === 0 && metarBank.count === 0)
             noStationsPlaceholder.enabled = true
+    }
+
+    function moveUP(index) {
+        metarModel.move(index, 0, 1)
+
+        var data = []
+        for (var i = 0; i < metarModel.count; i++) {
+            data.push({ station_id: metarModel.get(i).station_id, view_position: i })
+
+        }
+        metarBank.setViewPositions(data)
     }
 
     SilicaListView {
@@ -105,7 +117,11 @@ Page {
 
                 Image {
                     id: windpositionicon
-                    source: "image://theme/icon-s-task"
+                    source: "../weather-icons/wind-white.png"
+                    width: 2*Theme.horizontalPageMargin
+                    height: width
+                    opacity: 1
+                    fillMode: Image.PreserveAspectFit
                     anchors {
                         top: locationLabel.bottom
                         left: parent.left
@@ -140,6 +156,11 @@ Page {
             Component {
                 id: contextMenu
                 ContextMenu {
+                    MenuItem {
+                        text: qsTr("Move Up")
+                        visible: model.index !== 0
+                        onClicked: moveUP(model.index)
+                    }
                     MenuItem {
                         text: qsTr("Remove")
                         onClicked: remorseAction(qsTr("Removing"), delegateItem.deleteItem )

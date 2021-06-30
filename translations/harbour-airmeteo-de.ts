@@ -31,6 +31,53 @@
         <source>Not for operational use! The data used on this app could be outdated, inaccurate or contain errors. Always use up-to-date official service from your airport for flight planning.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Icons:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddManualStationDialog</name>
+    <message>
+        <source>Add</source>
+        <translation>Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>Station</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ICAO Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Ort</translation>
+    </message>
+    <message>
+        <source>location</source>
+        <translation>Ort</translation>
+    </message>
+    <message>
+        <source>Country</source>
+        <translation>Land</translation>
+    </message>
+    <message>
+        <source>airport name</source>
+        <translation>airport name</translation>
+    </message>
+    <message>
+        <source>country</source>
+        <translation>Land</translation>
+    </message>
 </context>
 <context>
     <name>AddStationDialog</name>
@@ -57,6 +104,10 @@
     <message>
         <source>Station not Found, try again</source>
         <translation>Station nicht gefunden, versuche es nochmal</translation>
+    </message>
+    <message>
+        <source>Add Manually</source>
+        <translation>Manuell Hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -99,6 +150,10 @@
     <message>
         <source>Refresh Data</source>
         <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <translation>Nach Oben</translation>
     </message>
 </context>
 <context>

@@ -33,3 +33,4 @@ def getMetar(icao):
                             metar.append({'type': item.tag, 'value': item.text})
 
     return metar
+

@@ -17,22 +17,23 @@ Not for operational use! The data used on this app could be outdated, inaccurate
 ## Data source:
 - aviationweather.gov
 - airport-data.com
+- ourairports.com
 
 ## Credits:
  - [harbour-meteoswiss](https://github.com/ichthyosaurus/harbour-meteoswiss)
  - [welkweer](https://openrepos.net/content/ade/welkweer)
  - [harbour-opensensefish](https://gitlab.com/nobodyinperson/harbour-opensensefish)
+ - Icons from lucide [https://github.com/lucide-icons/lucide]
 
 ## ToDo
 - Better UI
-- Icons(wind, etc..)
+- Icons(wind, etc..) evtl... https://github.com/lucide-icons/lucide
 - Better Cover interaction
 - TAF
 - All Request in JS
 - Search Function
 - From RAW to Decode(own implementation)
 - Better Error handling
-- Manual Airport adding, when not exist in airport-data.com
 
 ## Dev Hints
 https://github.com/python-metar/python-metar/blob/master/metar/Metar.py

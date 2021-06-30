@@ -18,20 +18,28 @@ Page {
         var metar = metarBank.getMETAR(stationCode)
         rawMETARLabel.text = metar[0].raw_text
 
-        var pressureRex = /Q([0-9]{3,4})/
-        var pressureValue = pressureRex.exec(metar[0].raw_text)
+        try {
+            var pressureRex = /Q([0-9]{3,4})/
+            var pressureValue = pressureRex.exec(metar[0].raw_text)
 
-        var visibilityRex =  /\b(CAVOK|[PM]?([0-9]{4})|([0-9] )?([0-9]{1,2})([0-9])?(SM|KM))\b/
-        var visibilityValue = visibilityRex.exec(metar[0].raw_text)
-        if (visibilityValue[1] === "9999")
-            visibilityValue = qsTr("10 km and more")
-        else if (visibilityValue[1] === "CAVOK")
-            visibilityValue = qsTr("Clouds and Visibility OK")
-        else
-            visibilityValue = visibilityValue[1] + " km"
+            presure.valueLabelText = pressureValue[1] + " hPa"
+        } catch(e) {
+             presure.valueLabelText = "error"
+        }
 
+        try {
+            var visibilityRex =  /\b(CAVOK|[PM]?([0-9]{4})|([0-9] )?([0-9]{1,2})([0-9])?(SM|KM))\b/
+            var visibilityValue = visibilityRex.exec(metar[0].raw_text)
+            if (visibilityValue[1] === "9999")
+                visibilityValue = qsTr("10 km and more")
+            else if (visibilityValue[1] === "CAVOK")
+                visibilityValue = qsTr("Clouds and Visibility OK")
+            else
+                visibilityValue = visibilityValue[1] + " km"
+        } catch(error) {
+            visibilityValue = "error"
+        }
         view.valueLabelText = visibilityValue
-        presure.valueLabelText = pressureValue[1] + " hPa"
         temperatur.valueLabelText =  metar[0].temp_c + "° C"
         dewpoint.valueLabelText = metar[0].dewpoint_c + "° C"
         humidity.valueLabelText = Client.humidity(metar[0].temp_c, metar[0].dewpoint_c) + "%"

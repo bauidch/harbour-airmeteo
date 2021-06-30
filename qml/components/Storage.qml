@@ -10,7 +10,7 @@ ListModel {
      }
      function __ensureTables(tx)
      {
-         tx.executeSql('CREATE TABLE IF NOT EXISTS metars(station_id TEXT, name TEXT, location TEXT, country TEXT, raw_text TEXT, observation_time TEXT, temp_c TEXT, dewpoint_c TEXT, wind_dir_degrees TEXT, wind_speed_kt TEXT)', []);
+         tx.executeSql("CREATE TABLE IF NOT EXISTS metars(station_id TEXT, name TEXT, location TEXT, country TEXT, view_position INTEGER, raw_text TEXT, observation_time TEXT, temp_c TEXT, dewpoint_c TEXT, wind_dir_degrees TEXT, wind_speed_kt TEXT)", []);
      }
 
      function getMETARS() {
@@ -19,7 +19,7 @@ ListModel {
              function(tx) {
                  __ensureTables(tx);
                  try {
-                    var rs = tx.executeSql("SELECT * FROM metars", []);
+                    var rs = tx.executeSql("SELECT * FROM metars ORDER BY view_position ASC;", []);
                  }
                  catch(e) {
                     if(e.code === SQLException.DATABASE_ERR) {
@@ -36,7 +36,7 @@ ListModel {
                     for (var i = 0; i < rs.rows.length; ++i) {
                         var row = rs.rows.item(i);
                         metars.push(
-                            {station_id: row.station_id, name: row.name, location: row.location, country: row.country, raw_text: row.raw_text, observation_time: row.observation_time, temp_c: row.temp_c, dewpoint_c: row.dewpoint_c, wind_dir_degrees: row.wind_dir_degrees, wind_speed_kt: row.wind_speed_kt}
+                            {station_id: row.station_id, name: row.name, location: row.location, country: row.country, view_position: row.view_position, raw_text: row.raw_text, observation_time: row.observation_time, temp_c: row.temp_c, dewpoint_c: row.dewpoint_c, wind_dir_degrees: row.wind_dir_degrees, wind_speed_kt: row.wind_speed_kt}
                         );
                     }
                 } else {
@@ -57,11 +57,11 @@ ListModel {
                  }
                  catch(e) {
                     if(e.code === SQLException.DATABASE_ERR) {
-                        console.warn('Database error:', e.message);
+                        console.warn("Database error:", e.message);
                     } else if(e.code === SQLException.SYNTAX_ERR) {
-                        console.warn('Database version error:', e.message);
+                        console.warn("Database version error:", e.message);
                     } else {
-                        console.warn('Database unknown error:', e.message);
+                        console.warn("Database unknown error:", e.message);
                     }
 
                   return false;
@@ -70,7 +70,7 @@ ListModel {
                     for (var i = 0; i < rs.rows.length; ++i) {
                         var row = rs.rows.item(i);
                         metars.push(
-                            {station_id: row.station_id, name: row.name, location: row.location, country: row.country, raw_text: row.raw_text, observation_time: row.observation_time, temp_c: row.temp_c, dewpoint_c: row.dewpoint_c, wind_dir_degrees: row.wind_dir_degrees, wind_speed_kt: row.wind_speed_kt}
+                            {station_id: row.station_id, name: row.name, location: row.location, country: row.country, view_position: row.view_position, raw_text: row.raw_text, observation_time: row.observation_time, temp_c: row.temp_c, dewpoint_c: row.dewpoint_c, wind_dir_degrees: row.wind_dir_degrees, wind_speed_kt: row.wind_speed_kt}
                         );
                     }
                 } else {
@@ -80,6 +80,66 @@ ListModel {
          )
          return metars;
      }
+
+     function checkDB() {
+         var res = 0
+         __db().transaction(
+             function(tx) {
+                 __ensureTables(tx);
+                 try {
+                     var rs = tx.executeSql("SELECT view_position FROM metars;");
+                 }
+                 catch(e) {
+                     console.debug("Storage: view_position dosn't exists")
+                     dbMaintenance()
+                 }
+
+             }
+         )
+
+     }
+
+     function dbMaintenance() {
+         var res = 0
+         __db().transaction(
+             function(tx) {
+                 __ensureTables(tx);
+                 try {
+                     var rs = tx.executeSql("ALTER TABLE metars ADD COLUMN view_position INTEGER AFTER country;", []);
+                 }
+                 catch(e) {
+                     console.debug("error while make db maitanace")
+                 }
+             }
+         )
+
+     }
+
+     function setViewPositions(data) {
+         var res = 0
+         __db().transaction(
+             function(tx) {
+                 __ensureTables(tx);
+                    try {
+                     for (var i = 0; i < data.length; i++) {
+                         var rs = tx.executeSql('UPDATE metars SET view_position=? WHERE station_id=?;', [data[i].view_position, data[i].station_id]);
+
+                         if (rs.rowsAffected !== 1) {
+                             console.log("error failed to set view position " + data[i].station_id);
+                         } else {
+                             res += 1;
+                         }
+                     }
+
+                     } catch(e) {
+                         console.log("error in query: ", data);
+                         res = undefined;
+                     }
+                }
+          )
+         return res;
+     }
+
 
      function getCount() {
          var res = 0
@@ -91,7 +151,7 @@ ListModel {
                      res = rs.rows.length;
                  }
                  catch(e) {
-                     console.log("error while loading metars count")
+                     console.debug("error while loading metars count")
                  }
              }
          )
@@ -123,11 +183,11 @@ ListModel {
          return true;
      }
 
-     function saveMETAR(station_id, name, location, country, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt) {
+     function saveMETAR(station_id, name, location, country, view_position, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt) {
               __db().transaction(
                   function(tx) {
                       __ensureTables(tx);
-                      tx.executeSql("INSERT OR REPLACE INTO metars VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [station_id, name, location, country, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt]);
+                      tx.executeSql("INSERT INTO metars VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [station_id, name, location, country, view_position, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt]);
                   }
               )
           }
