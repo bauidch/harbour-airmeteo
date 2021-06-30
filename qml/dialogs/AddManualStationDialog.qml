@@ -15,6 +15,7 @@ Dialog {
         anchors.fill: parent
         contentHeight: column.height + Theme.paddingLarge
 
+
         DialogHeader {
             id: header
             acceptText: qsTr("Add")
@@ -37,47 +38,54 @@ Dialog {
                 errorHighlight: false
                 placeholderText: qsTr("ICAO Code")
                 inputMethodHints: Qt.ImhPreferUppercase
+                EnterKey.onClicked: stationNameInput.focus = true;
+            }
+
+            TextField {
+                id: stationNameInput
+                width: parent.width
+                label: qsTr("Name")
+                errorHighlight: false
+                placeholderText: qsTr("airport name")
+                inputMethodHints: Qt.ImhPreferUppercase
+                EnterKey.onClicked: stationLocationInput.focus = true;
+            }
+            TextField {
+                id: stationLocationInput
+                width: parent.width
+                label: qsTr("Location")
+                errorHighlight: false
+                placeholderText: qsTr("location")
+                inputMethodHints: Qt.ImhPreferUppercase
+                EnterKey.onClicked: stationCountryInput.focus = true;
+            }
+            TextField {
+                id: stationCountryInput
+                width: parent.width
+                label: qsTr("Country")
+                errorHighlight: false
+                placeholderText: qsTr("country")
+                inputMethodHints: Qt.ImhPreferUppercase
                 EnterKey.onClicked: parent.focus = true;
-            }
+                onFocusChanged: {
+                    if(stationInput.text.length < 0) {
+                       stationInput.errorHighlight = true
+                    }
+                    if(stationNameInput.text.length < 0) {
+                       stationNameInput.errorHighlight = true
+                    }
+                    if(stationNameInput.text.length < 0) {
+                       stationNameInput.errorHighlight = true
+                    }
+                    if(stationLocationInput.text.length < 0) {
+                       stationLocationInput.errorHighlight = true
+                    }
+                    if(stationCountryInput.text.length < 0) {
+                       stationCountryInput.errorHighlight = true
+                    }
 
-            SectionHeader {
-                id: resultHeader
-                text: qsTr("Result")
-                visible: false
-
-            }
-
-            Label {
-                id: stationNotFound
-                width: parent.width
-                text: qsTr("Station not Found, try again")
-                visible: false
-                x: Theme.paddingLarge
-            }
-            Label {
-                id: stationIcao
-                width: parent.width
-                text: "ZZZZ"
-                visible: false
-                x: Theme.paddingLarge
-            }
-            Label {
-                id: stationName
-                width: parent.width
-                visible: false
-                x: Theme.paddingLarge
-            }
-            Label {
-                id: stationLocation
-                width: parent.width
-                visible: false
-                x: Theme.paddingLarge
-            }
-            Label {
-                id: stationCountry
-                width: parent.width
-                visible: false
-                x: Theme.paddingLarge
+                    deactivateAccept = true
+                }
             }
 
         }
@@ -89,6 +97,6 @@ Dialog {
         flickable: pageFlickable
     }
     onAccepted:{
-      loadDataToStorage(stationInput.text)
+      loadManualDataToStorage(stationInput.text, stationNameInput.text, stationLocationInput.text, stationCountryInput.text)
     }
 }

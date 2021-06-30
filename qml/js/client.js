@@ -29,23 +29,27 @@ function httpXMLGet(url) {
 //}
 
 function getAirportData(icao) {
-    var airportdataRAW = httpGet("https://ourairports.com/airports.json?airport=" + icao)
+    var airportdataRAW = httpGet("https://ourairports.com/airports.json?strict=true&limit=2&airport=" + icao)
 
     try {
         var location = JSON.parse(airportdataRAW.responseText);
     } catch (e) {
-        console.log("error: failed to parse json, code was " + airportdataRAW.status);
+        console.log("JS error: failed to parse json, code was " + airportdataRAW.status);
+        return undefined
     }
 
     if (airportdataRAW.status >= 200 && airportdataRAW.status < 400) {
-         var ret = [];
-        ret.push({"icao":location.ident, "name":location.name, "location":location.municipality, "country":location.country_name});
-        console.log(ret.icao)
-        //return ret;
+        for (var i=0; i<location.length; i++) {
+            if (location[i].ident === icao) {
+               var ret = [];
+               ret.push({"icao":location[i].ident, "name":location[i].name, "location":location[i].municipality, "country":location[i].country_name});
+               return ret;
+            }
+        }
 
     } else {
-        console.log('JS: error or no data')
-        ret.push({"error":"api error Code " +  airportdataRAW.status});
+       console.log("JS: error or no data")
+       return undefined
     }
 }
 
@@ -66,7 +70,7 @@ function getAirportDataOLD(icao) {
         return ret;
 
     } else {
-        console.log('JS: error or no data')
+        console.log("JS: error or no data")
     }
 }
 

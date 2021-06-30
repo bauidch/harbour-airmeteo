@@ -116,8 +116,20 @@ ApplicationWindow
             }
 
             var data = Client.getAirportData(station_id)
+            var view_position = metarBank.getCount()
 
-            metarBank.saveMETAR(station_id, data[0].name, data[0].location, data[0].country, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt)
+            metarBank.saveMETAR(
+                        station_id,
+                        data[0].name,
+                        data[0].location,
+                        data[0].country,
+                        raw_text,
+                        observation_time,
+                        temp_c,
+                        dewpoint_c,
+                        wind_dir_degrees,
+                        wind_speed_kt
+            )
 
             metarModel.append(
             {
@@ -125,7 +137,70 @@ ApplicationWindow
                 name: data[0].name,
                 location: data[0].location,
                 country:  data[0].country,
-                view_position: 0,
+                view_position: view_position,
+                raw_text: raw_text,
+                observation_time: observation_time,
+                temp_c: temp_c,
+                dewpoint_c: dewpoint_c,
+                wind_dir_degrees: wind_dir_degrees,
+                wind_speed_kt: wind_speed_kt
+            }
+            )
+
+        });
+
+    }
+
+    function loadManualDataToStorage(station_id, name, location, country) {
+        python.call('airdata.getMetar', [station_id], function(result) {
+            if (result.length <= 0) {
+               console.log('QML Debug: No Data')
+            }
+
+            for (var i=0; i<result.length; i++) {
+                if (result[i].type === "raw_text") {
+                    var raw_text =  result[i].value
+                }
+                if (result[i].type === "temp_c") {
+                    var temp_c =  result[i].value
+                }
+                if (result[i].type === "dewpoint_c") {
+                    var dewpoint_c = result[i].value
+                }
+                if (result[i].type === "wind_dir_degrees") {
+                    var wind_dir_degrees = result[i].value
+                }
+                if (result[i].type === "wind_speed_kt") {
+                    var wind_speed_kt = result[i].value
+                }
+
+                if (result[i].type === "observation_time") {
+                    var observation_time = result[i].value
+                }
+            }
+
+            var view_position = metarBank.getCount()
+
+            metarBank.saveMETAR(
+                        station_id,
+                        name,
+                        location,
+                        country,
+                        raw_text,
+                        observation_time,
+                        temp_c,
+                        dewpoint_c,
+                        wind_dir_degrees,
+                        wind_speed_kt
+            )
+
+            metarModel.append(
+            {
+                station_id: station_id,
+                name: name,
+                location: location,
+                country:  country,
+                view_position: view_position,
                 raw_text: raw_text,
                 observation_time: observation_time,
                 temp_c: temp_c,

@@ -15,6 +15,13 @@ Dialog {
         anchors.fill: parent
         contentHeight: column.height + Theme.paddingLarge
 
+        PushUpMenu {
+            MenuItem {
+                text: qsTr("Add Manually")
+                onClicked: pageStack.replace(Qt.resolvedUrl("AddManualStationDialog.qml"))
+            }
+        }
+
         DialogHeader {
             id: header
             acceptText: qsTr("Add")

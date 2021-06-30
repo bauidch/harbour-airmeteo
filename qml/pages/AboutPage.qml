@@ -90,7 +90,7 @@ Page {
                 Label {
                     font.pixelSize: Theme.fontSizeExtraSmall
                     wrapMode: Text.Wrap
-                    text: "aviationweather.gov, airport-data.com"
+                    text: "aviationweather.gov, airport-data.com, ourairports.com"
                 }
             }
             Row {

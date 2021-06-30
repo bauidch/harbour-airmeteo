@@ -55,12 +55,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Result</source>
-        <translation type="unfinished">Resultat</translation>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Station not Found, try again</source>
-        <translation>Station nicht gefunden, versuche es nochmal</translation>
+        <source>Location</source>
+        <translation>Ort</translation>
+    </message>
+    <message>
+        <source>location</source>
+        <translation>Ort</translation>
+    </message>
+    <message>
+        <source>Country</source>
+        <translation>Land</translation>
+    </message>
+    <message>
+        <source>airport name</source>
+        <translation>airport name</translation>
+    </message>
+    <message>
+        <source>country</source>
+        <translation>Land</translation>
     </message>
 </context>
 <context>
@@ -88,6 +104,10 @@
     <message>
         <source>Station not Found, try again</source>
         <translation>Station nicht gefunden, versuche es nochmal</translation>
+    </message>
+    <message>
+        <source>Add Manually</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -133,7 +153,7 @@
     </message>
     <message>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach Oben</translation>
     </message>
 </context>
 <context>

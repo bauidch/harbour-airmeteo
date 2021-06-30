@@ -10,7 +10,7 @@ ListModel {
      }
      function __ensureTables(tx)
      {
-         tx.executeSql('CREATE TABLE IF NOT EXISTS metars(station_id TEXT, name TEXT, location TEXT, country TEXT, view_position INTEGER, raw_text TEXT, observation_time TEXT, temp_c TEXT, dewpoint_c TEXT, wind_dir_degrees TEXT, wind_speed_kt TEXT)', []);
+         tx.executeSql("CREATE TABLE IF NOT EXISTS metars(station_id TEXT, name TEXT, location TEXT, country TEXT, view_position INTEGER, raw_text TEXT, observation_time TEXT, temp_c TEXT, dewpoint_c TEXT, wind_dir_degrees TEXT, wind_speed_kt TEXT)", []);
      }
 
      function getMETARS() {
@@ -57,11 +57,11 @@ ListModel {
                  }
                  catch(e) {
                     if(e.code === SQLException.DATABASE_ERR) {
-                        console.warn('Database error:', e.message);
+                        console.warn("Database error:", e.message);
                     } else if(e.code === SQLException.SYNTAX_ERR) {
-                        console.warn('Database version error:', e.message);
+                        console.warn("Database version error:", e.message);
                     } else {
-                        console.warn('Database unknown error:', e.message);
+                        console.warn("Database unknown error:", e.message);
                     }
 
                   return false;
@@ -105,7 +105,7 @@ ListModel {
              function(tx) {
                  __ensureTables(tx);
                  try {
-                     var rs = tx.executeSql('ALTER TABLE metars ADD COLUMN view_position INTEGER AFTER country;', []);
+                     var rs = tx.executeSql("ALTER TABLE metars ADD COLUMN view_position INTEGER AFTER country;", []);
                  }
                  catch(e) {
                      console.debug("error while make db maitanace")
@@ -183,11 +183,11 @@ ListModel {
          return true;
      }
 
-     function saveMETAR(station_id, name, location, country, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt) {
+     function saveMETAR(station_id, name, location, country, view_position, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt) {
               __db().transaction(
                   function(tx) {
                       __ensureTables(tx);
-                      tx.executeSql("INSERT OR REPLACE INTO metars VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [station_id, name, location, country, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt]);
+                      tx.executeSql("INSERT INTO metars VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [station_id, name, location, country, view_position, raw_text, observation_time, temp_c, dewpoint_c, wind_dir_degrees, wind_speed_kt]);
                   }
               )
           }
