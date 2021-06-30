@@ -107,7 +107,7 @@
     </message>
     <message>
         <source>Add Manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuell Hinzufügen</translation>
     </message>
 </context>
 <context>
